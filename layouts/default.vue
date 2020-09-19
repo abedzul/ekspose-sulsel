@@ -1,16 +1,33 @@
 <template>
-  <div>
-    <div>
-      <li v-for="category in categories" :key="category.id">
+  <v-app>
+    <v-app-bar app>
+      <router-link to="/">
+        <h2>
+          EKSPOSE SULSEL
+        </h2>
+      </router-link>
+
+      <v-spacer></v-spacer>
+
+      <v-btn text v-for="category in categories" :key="category.id">
         <router-link
           :to="{ name: 'categories-id', params: { id: category.id } }"
-          >{{ category.name }}
+        >
+          {{ category.name }}
         </router-link>
-      </li>
-    </div>
+      </v-btn>
+    </v-app-bar>
 
-    <Nuxt />
-  </div>
+    <v-main>
+      <v-container>
+        <Nuxt />
+      </v-container>
+    </v-main>
+
+    <v-footer app>
+      <h5>2020 eksposesulsel.com</h5>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
@@ -31,13 +48,4 @@ export default {
 };
 </script>
 
-<style>
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-</style>
+<style></style>
