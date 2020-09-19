@@ -6,7 +6,7 @@
           <v-carousel-item
             v-for="img in articles"
             :key="img.id"
-            :src="api_url + img.image[0].url"
+            :src="api_url + img.image.url"
           >
           </v-carousel-item>
         </v-carousel>

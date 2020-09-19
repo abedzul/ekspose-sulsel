@@ -5,17 +5,17 @@
       :to="{ name: 'articles-id', params: { id: article.id } }"
       :key="article.id"
     >
-      <div>
-        <div v-if="article.image">
-          <img :src="api_url + article.image[0].url" alt="" height="100" />
-        </div>
-        <div>
-          <p v-if="article.category">
+      <v-row no-gutters>
+        <v-col md="4" cols="4" v-if="article.image">
+          <img :src="api_url + article.image.url" alt="" width="90%" />
+        </v-col>
+        <v-col md="6" cols="6">
+          <h5>{{ article.title }}</h5>
+          <v-btn dark x-small depressed v-if="article.category">
             {{ article.category.name }}
-          </p>
-          <p>{{ article.title }}</p>
-        </div>
-      </div>
+          </v-btn>
+        </v-col>
+      </v-row>
     </router-link>
   </div>
 </template>

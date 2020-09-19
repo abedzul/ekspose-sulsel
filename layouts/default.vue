@@ -2,9 +2,9 @@
   <v-app>
     <v-app-bar app>
       <router-link to="/">
-        <h2>
+        <h3>
           EKSPOSE SULSEL
-        </h2>
+        </h3>
       </router-link>
 
       <v-spacer></v-spacer>
