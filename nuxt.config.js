@@ -1,6 +1,8 @@
 export default {
   env: {
-    strapiBaseUrl: process.env.API_URL || "http://localhost:1337"
+    // strapiBaseUri: process.env.API_URL || "http://localhost:1337",
+    strapiBaseUri:
+      process.env.API_URL || "https://strapi-ekspose-sulsel.herokuapp.com/"
   },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -34,7 +36,10 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: process.env.BACKEND_URL || "http://localhost:1337/graphql"
+        httpEndpoint:
+          // process.env.BACKEND_URL || "http://localhost:1337/graphql"
+          process.env.BACKEND_URL ||
+          "https://strapi-ekspose-sulsel.herokuapp.com/graphql"
       }
     }
   },

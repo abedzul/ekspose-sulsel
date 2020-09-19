@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       articles: [],
-      api_url: process.env.strapiBaseUrl
+      api_url: process.env.strapiBaseUri
     };
   },
   components: {

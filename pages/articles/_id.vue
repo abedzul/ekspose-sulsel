@@ -45,7 +45,7 @@ export default {
       article: {},
       articles: [],
       moment: moment,
-      api_url: process.env.strapiBaseUrl
+      api_url: process.env.strapiBaseUri
     };
   },
   apollo: {
