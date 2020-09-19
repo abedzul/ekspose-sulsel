@@ -1,12 +1,12 @@
 <template>
   <div>
     <client-only>
-      <div>
-        <div>
-          <h1>{{ category.name }}</h1>
+      <h2 class="text-uppercase">{{ category.name }}</h2>
+      <v-row>
+        <v-col md="4" cols="12">
           <Articles :articles="category.articles || []"></Articles>
-        </div>
-      </div>
+        </v-col>
+      </v-row>
     </client-only>
   </div>
 </template>

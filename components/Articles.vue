@@ -10,7 +10,7 @@
           <img :src="api_url + article.image.url" alt="" width="90%" />
         </v-col>
         <v-col md="6" cols="6">
-          <h5>{{ article.title }}</h5>
+          <h5 class="mb-2">{{ article.title }}</h5>
           <v-btn dark x-small depressed v-if="article.category">
             {{ article.category.name }}
           </v-btn>
