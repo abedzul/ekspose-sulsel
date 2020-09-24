@@ -15,6 +15,10 @@ export default {
         hid: "description",
         name: "description",
         content: "Portal Berita Sulawesi Selatan"
+      },
+      {
+        name: "google-site-verification",
+        content: "EEgQ7byeOq_F_HG7sCIOt_8_ieexLqddiL1zb0Bh3e0"
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
