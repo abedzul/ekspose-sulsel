@@ -1,8 +1,9 @@
 export default {
   env: {
-    // strapiBaseUri: process.env.API_URL || "http://localhost:1337",
     strapiBaseUri:
-      process.env.API_URL || "https://strapi-ekspose-sulsel.herokuapp.com/"
+      process.env.API_URL || process.env.NODE_ENV !== "production"
+        ? "http://localhost:1337"
+        : "https://strapi-ekspose-sulsel.herokuapp.com/"
   },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -38,8 +39,9 @@ export default {
       default: {
         httpEndpoint:
           // process.env.BACKEND_URL || "http://localhost:1337/graphql"
-          process.env.BACKEND_URL ||
-          "https://strapi-ekspose-sulsel.herokuapp.com/graphql"
+          process.env.BACKEND_URL || process.env.NODE_ENV !== "production"
+            ? "http://localhost:1337/graphql"
+            : "https://strapi-ekspose-sulsel.herokuapp.com/graphql"
       }
     }
   },

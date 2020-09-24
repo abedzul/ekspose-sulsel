@@ -6,7 +6,8 @@ query Articles {
     image {
       url
     }
-    category {
+    categories {
+      id
       name
     }
   }

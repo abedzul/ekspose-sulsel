@@ -8,7 +8,7 @@ query Category($id: ID!) {
       image {
         url
       }
-      category {
+      categories {
         id
         name
       }
