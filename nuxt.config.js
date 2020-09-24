@@ -3,7 +3,7 @@ export default {
     strapiBaseUri:
       process.env.API_URL || process.env.NODE_ENV !== "production"
         ? "http://localhost:1337"
-        : "https://strapi-ekspose-sulsel.herokuapp.com/"
+        : null
   },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
