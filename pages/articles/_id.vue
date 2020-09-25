@@ -3,7 +3,7 @@
     <v-row>
       <v-col md="8" cols="12">
         <div v-if="article.image">
-          <img :src="api_url + article.image.url" alt="" width="100%" />
+          <img :src="article.image.url" alt="" width="100%" />
         </div>
 
         <h1 class="mt-5">{{ article.title }}</h1>
@@ -12,9 +12,18 @@
           admin {{ moment(article.published).format("DD MMM YYYY") }}
         </h5>
 
-        <v-btn dark x-small depressed v-if="article.category">
-          {{ article.category.name }}
-        </v-btn>
+        <v-row no-gutters v-if="article.categories" class="mt-2">
+          <v-btn
+            dark
+            small
+            depressed
+            v-for="(category, i) in article.categories"
+            :key="category.id"
+            :class="i == article.categories.length - 1 ? null : 'mr-2'"
+          >
+            {{ category.name }}
+          </v-btn>
+        </v-row>
 
         <p
           class="mt-5"
@@ -44,8 +53,7 @@ export default {
     return {
       article: {},
       articles: [],
-      moment: moment,
-      api_url: process.env.strapiBaseUri
+      moment: moment
     };
   },
   apollo: {

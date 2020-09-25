@@ -1,10 +1,4 @@
 export default {
-  env: {
-    strapiBaseUri:
-      process.env.API_URL || process.env.NODE_ENV !== "production"
-        ? "http://localhost:1337"
-        : ""
-  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: "Ekspose Sulsel - Portal Berita Sulawesi Selatan",

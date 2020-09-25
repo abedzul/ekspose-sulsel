@@ -6,7 +6,7 @@
           <v-carousel-item
             v-for="img in articles"
             :key="img.id"
-            :src="api_url + img.image.url"
+            :src="img.image.url"
           >
           </v-carousel-item>
         </v-carousel>
@@ -25,8 +25,7 @@ import Articles from "~/components/Articles";
 export default {
   data() {
     return {
-      articles: [],
-      api_url: process.env.strapiBaseUri
+      articles: []
     };
   },
   components: {

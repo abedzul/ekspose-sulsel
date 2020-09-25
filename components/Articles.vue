@@ -3,7 +3,7 @@
     <v-row no-gutters v-for="article in articles" :key="article.id">
       <v-col md="4" cols="4" v-if="article.image">
         <router-link :to="{ name: 'articles-id', params: { id: article.id } }">
-          <img :src="api_url + article.image.url" alt="" width="90%" />
+          <img :src="article.image.url" alt="" width="90%" />
         </router-link>
       </v-col>
       <v-col md="8" cols="8">
@@ -32,9 +32,7 @@ import articlesQuery from "~/apollo/queries/article/articles";
 
 export default {
   data() {
-    return {
-      api_url: process.env.strapiBaseUri
-    };
+    return {};
   },
   props: {
     articles: Array

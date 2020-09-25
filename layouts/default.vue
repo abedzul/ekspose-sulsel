@@ -25,7 +25,15 @@
     </v-main>
 
     <v-footer app>
-      <h5>2020 eksposesulsel.com</h5>
+      <h5>
+        2020
+        <a
+          href="http://github.com/abedzul"
+          target="_blank"
+          rel="noopener noreferrer"
+          >github.com/abedzul</a
+        >
+      </h5>
     </v-footer>
   </v-app>
 </template>
