@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-row>
+      {{ news }}
       <v-col md="8" cols="12">
         <div v-if="article.image">
           <img :src="article.image.url" alt="" width="100%" />
