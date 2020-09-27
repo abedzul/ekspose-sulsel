@@ -3,8 +3,8 @@
     <client-only>
       <h2 class="text-uppercase">{{ category.name }}</h2>
       <v-row>
-        <v-col md="4" cols="12">
-          <Articles :articles="category.articles || []"></Articles>
+        <v-col md="3" cols="12" v-for="art in category.articles" :key="art.id">
+          <ArticlesGrid :article="art"></ArticlesGrid>
         </v-col>
       </v-row>
     </client-only>
@@ -13,7 +13,7 @@
 
 <script>
 import articlesQuery from "~/apollo/queries/article/articles-categories";
-import Articles from "~/components/Articles";
+import ArticlesGrid from "~/components/ArticlesGrid";
 
 export default {
   data() {
@@ -22,7 +22,7 @@ export default {
     };
   },
   components: {
-    Articles
+    ArticlesGrid
   },
   apollo: {
     category: {

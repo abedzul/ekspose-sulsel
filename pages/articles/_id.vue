@@ -13,16 +13,25 @@
         </h5>
 
         <v-row no-gutters v-if="article.categories" class="mt-2">
-          <v-btn
-            dark
-            small
-            depressed
+          <v-col
+            md="auto"
+            cols="auto"
             v-for="(category, i) in article.categories"
             :key="category.id"
-            :class="i == article.categories.length - 1 ? null : 'mr-2'"
           >
-            {{ category.name }}
-          </v-btn>
+            <router-link
+              :to="{ name: 'categories-id', params: { id: category.id } }"
+            >
+              <v-btn
+                dark
+                small
+                depressed
+                :class="i == article.categories.length - 1 ? null : 'mr-2'"
+              >
+                {{ category.name }}
+              </v-btn>
+            </router-link>
+          </v-col>
         </v-row>
 
         <p
@@ -33,7 +42,10 @@
       </v-col>
 
       <v-col md="4" cols="12">
-        <Articles :articles="articles" />
+        <h2 class="mb-3">TERBARU</h2>
+        <v-row no-gutters v-for="art in articles" :key="art.id">
+          <Articles :article="art"></Articles>
+        </v-row>
       </v-col>
     </v-row>
   </div>

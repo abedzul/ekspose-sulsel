@@ -16,6 +16,20 @@
           {{ category.name }}
         </router-link>
       </v-btn>
+
+      <v-btn text @click="search = true">
+        <v-icon>
+          mdi-magnify
+        </v-icon>
+      </v-btn>
+
+      <v-dialog v-model="search" max-width="1000px">
+        <v-card>
+          <v-container>
+            <v-text-field> </v-text-field>
+          </v-container>
+        </v-card>
+      </v-dialog>
     </v-app-bar>
 
     <v-main>
@@ -44,7 +58,8 @@ import categoriesQuery from "~/apollo/queries/category/categories";
 export default {
   data() {
     return {
-      categories: []
+      categories: [],
+      search: false
     };
   },
   apollo: {
