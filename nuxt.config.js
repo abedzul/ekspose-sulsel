@@ -1,4 +1,10 @@
 export default {
+  env: {
+    baseUrl:
+      process.env.BASE_URL || process.env.NODE_ENV !== "production"
+        ? "http://localhost:1337"
+        : "https://strapi-ekspose-sulsel.herokuapp.com/"
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: "Ekspose Sulsel - Portal Berita Sulawesi Selatan",

@@ -67,7 +67,7 @@ export default {
   },
   created() {
     axios
-      .get(`http://localhost:1337/articles`)
+      .get(`${process.env.baseUrl}/articles`)
       .then(res => {
         this.articles = res.data;
       })
