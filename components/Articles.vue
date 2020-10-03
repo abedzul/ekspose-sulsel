@@ -2,12 +2,22 @@
   <div>
     <v-row no-gutters class="mb-3">
       <v-col md="4" cols="4" v-if="article.image">
-        <router-link :to="{ name: 'articles-id', params: { id: article.id } }">
+        <router-link
+          :to="{
+            name: 'articles-slug',
+            params: { slug: article.slug }
+          }"
+        >
           <img :src="article.image.url" alt="" width="90%" />
         </router-link>
       </v-col>
       <v-col md="8" cols="8">
-        <router-link :to="{ name: 'articles-id', params: { id: article.id } }">
+        <router-link
+          :to="{
+            name: 'articles-slug',
+            params: { slug: article.slug }
+          }"
+        >
           <h5 class="mb-1">{{ article.title }}</h5>
         </router-link>
 
@@ -26,7 +36,7 @@
             :key="category.id"
           >
             <router-link
-              :to="{ name: 'categories-id', params: { id: category.id } }"
+              :to="{ name: 'categories-slug', params: { slug: category.slug } }"
             >
               <v-btn
                 dark

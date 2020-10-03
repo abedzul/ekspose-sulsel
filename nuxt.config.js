@@ -31,22 +31,11 @@ export default {
   buildModules: ["@nuxtjs/vuetify"],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit"],
+  modules: ["@nuxtjs/markdownit", "@nuxtjs/axios"],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 
-  apollo: {
-    clientConfigs: {
-      default: {
-        httpEndpoint:
-          // process.env.BACKEND_URL || "http://localhost:1337/graphql"
-          process.env.BACKEND_URL || process.env.NODE_ENV !== "production"
-            ? "http://localhost:1337/graphql"
-            : "https://strapi-ekspose-sulsel.herokuapp.com/graphql"
-      }
-    }
-  },
   markdownit: {
     preset: "default",
     linkify: true,

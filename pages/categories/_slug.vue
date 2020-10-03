@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import articlesQuery from "~/apollo/queries/article/articles-categories";
 import ArticlesGrid from "~/components/ArticlesGrid";
+import axios from "axios";
 
 export default {
   data() {
@@ -24,14 +24,15 @@ export default {
   components: {
     ArticlesGrid
   },
-  apollo: {
-    category: {
-      prefetch: true,
-      query: articlesQuery,
-      variables() {
-        return { id: parseInt(this.$route.params.id) };
-      }
-    }
+  created() {
+    axios
+      .get(`http://localhost:1337/categories?slug=${this.$route.params.slug}`)
+      .then(res => {
+        this.category = res.data[0];
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>

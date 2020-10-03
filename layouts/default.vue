@@ -11,7 +11,10 @@
 
       <v-btn text v-for="category in categories" :key="category.id">
         <router-link
-          :to="{ name: 'categories-id', params: { id: category.id } }"
+          :to="{
+            name: 'categories-slug',
+            params: { slug: category.slug }
+          }"
         >
           {{ category.name }}
         </router-link>
@@ -53,7 +56,7 @@
 </template>
 
 <script>
-import categoriesQuery from "~/apollo/queries/category/categories";
+import axios from "axios";
 
 export default {
   data() {
@@ -62,11 +65,15 @@ export default {
       search: false
     };
   },
-  apollo: {
-    categories: {
-      prefetch: true,
-      query: categoriesQuery
-    }
+  created() {
+    axios
+      .get(`http://localhost:1337/categories`)
+      .then(res => {
+        this.categories = res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>

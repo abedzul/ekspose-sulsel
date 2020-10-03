@@ -1,6 +1,8 @@
 <template>
   <div>
-    <router-link :to="{ name: 'articles-id', params: { id: article.id } }">
+    <router-link
+      :to="{ name: 'articles-slug', params: { slug: article.slug } }"
+    >
       <img :src="article.image.url" alt="" width="100%" />
       <h5 class="mb-1">{{ article.title }}</h5>
     </router-link>
@@ -20,7 +22,7 @@
         :key="category.id"
       >
         <router-link
-          :to="{ name: 'categories-id', params: { id: category.id } }"
+          :to="{ name: 'categories-slug', params: { slug: category.slug } }"
         >
           <v-btn
             dark
@@ -37,7 +39,6 @@
 </template>
 
 <script>
-import articlesQuery from "~/apollo/queries/article/articles";
 var moment = require("moment");
 
 export default {

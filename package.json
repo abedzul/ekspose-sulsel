@@ -9,10 +9,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "^4.0.1-rc.3",
+    "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/markdownit": "^1.2.10",
     "core-js": "^3.6.5",
-    "graphql": "^15.3.0",
+    "moment": "^2.29.0",
     "nuxt": "^2.14.5"
   },
   "devDependencies": {

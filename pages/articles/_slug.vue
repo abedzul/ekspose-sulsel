@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-row>
-      {{ news }}
       <v-col md="8" cols="12">
         <div v-if="article.image">
           <img :src="article.image.url" alt="" width="100%" />
@@ -21,7 +20,7 @@
             :key="category.id"
           >
             <router-link
-              :to="{ name: 'categories-id', params: { id: category.id } }"
+              :to="{ name: 'categories-slug', params: { slug: category.slug } }"
             >
               <v-btn
                 dark
@@ -53,10 +52,9 @@
 </template>
 
 <script>
-import articleQuery from "~/apollo/queries/article/article";
-import articlesQuery from "~/apollo/queries/article/articles";
 import Articles from "~/components/Articles";
-var moment = require("moment");
+import axios from "axios";
+import moment from "moment";
 
 export default {
   components: {
@@ -69,21 +67,24 @@ export default {
       moment: moment
     };
   },
-  apollo: {
-    article: {
-      prefetch: true,
-      query: articleQuery,
-      variables() {
-        return { id: parseInt(this.$route.params.id) };
-      }
-    },
-    articles: {
-      prefetch: true,
-      query: articlesQuery,
-      variables() {
-        return { id: parseInt(this.$route.params.id) };
-      }
-    }
+  created() {
+    let one = `http://localhost:1337/articles?slug=${this.$route.params.slug}`;
+    let two = `http://localhost:1337/articles`;
+
+    const requestOne = axios.get(one);
+    const requestTwo = axios.get(two);
+
+    axios
+      .all([requestOne, requestTwo])
+      .then(
+        axios.spread((...res) => {
+          this.article = res[0].data[0];
+          this.articles = res[1].data;
+        })
+      )
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>

@@ -12,7 +12,10 @@
               class="d-flex flex-column justify-end fill-height headline-container"
             >
               <router-link
-                :to="{ name: 'articles-id', params: { id: img.id } }"
+                :to="{
+                  name: 'articles-slug',
+                  params: { slug: img.slug }
+                }"
               >
                 <h1>{{ img.title }}</h1>
               </router-link>
@@ -46,10 +49,10 @@
 </template>
 
 <script>
-import articlesQuery from "~/apollo/queries/article/articles";
 import Articles from "~/components/Articles";
 import ArticlesGrid from "~/components/ArticlesGrid";
-var moment = require("moment");
+import axios from "axios";
+import moment from "moment";
 
 export default {
   data() {
@@ -59,16 +62,18 @@ export default {
     };
   },
   components: {
-    Articles
+    Articles,
+    ArticlesGrid
   },
-  apollo: {
-    articles: {
-      prefetch: true,
-      query: articlesQuery,
-      variables() {
-        return { id: parseInt(this.$route.params.id) };
-      }
-    }
+  created() {
+    axios
+      .get(`http://localhost:1337/articles`)
+      .then(res => {
+        this.articles = res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>
