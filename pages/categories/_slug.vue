@@ -26,7 +26,7 @@ export default {
   },
   created() {
     axios
-      .get(`http://localhost:1337/categories?slug=${this.$route.params.slug}`)
+      .get(`${process.env.baseUrl}/categories?slug=${this.$route.params.slug}`)
       .then(res => {
         this.category = res.data[0];
       })

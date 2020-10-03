@@ -68,8 +68,8 @@ export default {
     };
   },
   created() {
-    let one = `http://localhost:1337/articles?slug=${this.$route.params.slug}`;
-    let two = `http://localhost:1337/articles`;
+    let one = `${process.env.baseUrl}/articles?slug=${this.$route.params.slug}`;
+    let two = `${process.env.baseUrl}/articles`;
 
     const requestOne = axios.get(one);
     const requestTwo = axios.get(two);
