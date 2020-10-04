@@ -26,7 +26,7 @@
           </v-carousel-item>
         </v-carousel>
 
-        <h2 class="mt-5">POPULER</h2>
+        <h2 class="text-uppercase mt-5">terbaru</h2>
         <v-row>
           <v-col
             md="4"
@@ -39,7 +39,7 @@
         </v-row>
       </v-col>
       <v-col md="4" cols="12">
-        <h2 class="mb-3">TERBARU</h2>
+        <h2 class="text-uppercase mb-3">populer</h2>
         <v-row no-gutters v-for="art in articles" :key="art.id">
           <Articles :article="art"></Articles>
         </v-row>

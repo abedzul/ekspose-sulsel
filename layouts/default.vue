@@ -20,16 +20,31 @@
         </router-link>
       </v-btn>
 
-      <v-btn text @click="search = true">
+      <v-btn text @click="searchDialog = true">
         <v-icon>
           mdi-magnify
         </v-icon>
       </v-btn>
 
-      <v-dialog v-model="search" max-width="1000px">
+      <v-dialog v-model="searchDialog" max-width="1000px">
         <v-card>
           <v-container>
-            <v-text-field> </v-text-field>
+            <v-row align="center">
+              <v-col md="10" cols="10">
+                <v-text-field
+                  autofocus
+                  @keyup.enter="searchArticle"
+                  clearable
+                  hide-details
+                  v-model="searchWhat"
+                  filled
+                >
+                </v-text-field>
+              </v-col>
+              <v-col md="2" cols="2">
+                <v-btn dark block @click="searchArticle">cari</v-btn>
+              </v-col>
+            </v-row>
           </v-container>
         </v-card>
       </v-dialog>
@@ -62,7 +77,8 @@ export default {
   data() {
     return {
       categories: [],
-      search: false
+      searchDialog: false,
+      searchWhat: ""
     };
   },
   created() {
@@ -74,6 +90,15 @@ export default {
       .catch(err => {
         console.log(err);
       });
+  },
+  methods: {
+    searchArticle() {
+      this.searchDialog = false;
+      this.$router.push({
+        name: "search-slug",
+        params: { slug: this.searchWhat }
+      });
+    }
   }
 };
 </script>

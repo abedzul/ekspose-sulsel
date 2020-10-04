@@ -1,11 +1,14 @@
 <template>
   <div>
     <client-only>
-      <h2 class="text-uppercase">{{ category.name }}</h2>
-      <v-row>
+      <h2 class="text-uppercase">kategori: {{ category.name }}</h2>
+      <v-row v-if="category.articles.length">
         <v-col md="3" cols="12" v-for="art in category.articles" :key="art.id">
           <ArticlesGrid :article="art"></ArticlesGrid>
         </v-col>
+      </v-row>
+      <v-row v-else>
+        no data
       </v-row>
     </client-only>
   </div>
