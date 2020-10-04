@@ -60,10 +60,10 @@
       <h5>
         2020
         <a
-          href="http://github.com/abedzul"
+          href="http://github.com/kalamangna"
           target="_blank"
           rel="noopener noreferrer"
-          >github.com/abedzul</a
+          >github.com/kalamangna</a
         >
       </h5>
     </v-footer>
