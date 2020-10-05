@@ -38,7 +38,7 @@ export default {
       },
       {
         property: "og:image",
-        content: "@/static/favicon.ico"
+        content: "https://ekspose-sulsel.herokuapp.com/favicon.ico"
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
