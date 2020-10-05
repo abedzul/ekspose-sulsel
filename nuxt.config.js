@@ -19,6 +19,26 @@ export default {
       {
         name: "google-site-verification",
         content: "EEgQ7byeOq_F_HG7sCIOt_8_ieexLqddiL1zb0Bh3e0"
+      },
+      {
+        property: "og:type",
+        content: "website"
+      },
+      {
+        property: "og:url",
+        content: "https://ekspose-sulsel.herokuapp.com/"
+      },
+      {
+        property: "og:title",
+        content: "Ekspose Sulsel - Portal Berita Sulawesi Selatan"
+      },
+      {
+        property: "og:description",
+        content: "Portal Berita Sulawesi Selatan"
+      },
+      {
+        property: "og:image",
+        content: "@/static/favicon.ico"
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
