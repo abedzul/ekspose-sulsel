@@ -20,7 +20,12 @@
                 <h1>{{ img.title }}</h1>
               </router-link>
               <h5 class="text-uppercase mt-2" v-if="img.published">
-                admin {{ moment(img.published).format("DD MMM YYYY") }}
+                admin
+                {{
+                  moment(img.published)
+                    .locale("ID")
+                    .format("DD MMM YYYY")
+                }}
               </h5>
             </div>
           </v-carousel-item>
@@ -67,7 +72,7 @@ export default {
   },
   created() {
     axios
-      .get(`${process.env.baseUrl}/articles`)
+      .get(`${process.env.baseUrl}/articles?_sort=id:DESC`)
       .then(res => {
         this.articles = res.data;
       })

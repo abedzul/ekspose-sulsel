@@ -25,18 +25,22 @@ export default {
         content: "website"
       },
       {
+        hid: "og:url",
         property: "og:url",
         content: "https://ekspose-sulsel.herokuapp.com/"
       },
       {
+        hid: "og:title",
         property: "og:title",
         content: "Ekspose Sulsel - Portal Berita Sulawesi Selatan"
       },
       {
+        hid: "og:description",
         property: "og:description",
         content: "Portal Berita Sulawesi Selatan"
       },
       {
+        hid: "og:image",
         property: "og:image",
         content: "https://ekspose-sulsel.herokuapp.com/ekspose-sulsel-logo.jpg"
       }

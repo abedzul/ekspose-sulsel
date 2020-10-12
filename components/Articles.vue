@@ -24,7 +24,11 @@
         <v-row no-gutters align="center" class="mb-1">
           <v-icon x-small>mdi-clock-outline</v-icon>
           <h6 class="text-uppercase ml-1">
-            {{ moment(article.published).format("DD MMM YYYY") }}
+            {{
+              moment(article.published)
+                .locale("ID")
+                .format("DD MMM YYYY")
+            }}
           </h6>
         </v-row>
 
@@ -55,7 +59,7 @@
 </template>
 
 <script>
-var moment = require("moment");
+import moment from "moment";
 
 export default {
   data() {

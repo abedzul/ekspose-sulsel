@@ -9,7 +9,12 @@
         <h1 class="mt-5">{{ article.title }}</h1>
 
         <h5 class="text-uppercase mt-5 mb-1" v-if="article.published">
-          admin {{ moment(article.published).format("DD MMM YYYY") }}
+          admin
+          {{
+            moment(article.published)
+              .locale("ID")
+              .format("DD MMM YYYY")
+          }}
         </h5>
 
         <v-row no-gutters v-if="article.categories" class="mt-2">
@@ -65,6 +70,41 @@ export default {
       article: {},
       articles: [],
       moment: moment
+    };
+  },
+  head() {
+    let article = this.article;
+
+    return {
+      title: `${article.title} | Ekspose Sulsel`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: article.content
+        },
+        {
+          hid: "og:url",
+          property: "og:url",
+          content: `https://ekspose-sulsel.herokuapp.com/articles/${article.slug}`
+        },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: `${article.title} | Ekspose Sulsel`
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: article.content
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content:
+            "https://ekspose-sulsel.herokuapp.com/ekspose-sulsel-logo.jpg"
+        }
+      ]
     };
   },
   created() {

@@ -20,7 +20,7 @@
         </router-link>
       </v-btn>
 
-      <v-btn text @click="searchDialog = true">
+      <v-btn text @click="openSearch">
         <v-icon>
           mdi-magnify
         </v-icon>
@@ -92,6 +92,10 @@ export default {
       });
   },
   methods: {
+    openSearch() {
+      this.searchDialog = true;
+      this.searchWhat = "";
+    },
     searchArticle() {
       this.searchDialog = false;
       this.$router.push({
