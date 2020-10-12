@@ -4,7 +4,11 @@
       <v-row>
         <v-col md="8" cols="12">
           <div v-if="article.image">
-            <img :src="article.image.url" alt="" width="100%" />
+            <v-img
+              :src="article.image.url"
+              alt="news"
+              max-height="640px"
+            ></v-img>
           </div>
 
           <h1 class="mt-5">{{ article.title }}</h1>

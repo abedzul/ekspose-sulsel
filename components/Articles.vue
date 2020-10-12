@@ -8,7 +8,11 @@
             params: { slug: article.slug }
           }"
         >
-          <img :src="article.image.url" alt="" width="90%" />
+          <img
+            :src="article.image.formats.thumbnail.url"
+            alt="news"
+            width="90%"
+          />
         </router-link>
       </v-col>
       <v-col md="8" cols="8">

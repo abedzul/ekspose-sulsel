@@ -3,7 +3,7 @@
     <router-link
       :to="{ name: 'articles-slug', params: { slug: article.slug } }"
     >
-      <img :src="article.image.url" alt="" width="100%" />
+      <img :src="article.image.formats.small.url" alt="news" width="100%" />
       <h5 class="mb-1">{{ article.title }}</h5>
     </router-link>
 
