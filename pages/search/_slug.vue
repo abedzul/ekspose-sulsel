@@ -21,23 +21,16 @@ import ArticlesGrid from "~/components/ArticlesGrid";
 import axios from "axios";
 
 export default {
-  data() {
-    return {
-      results: [],
-      findWhat: ""
-    };
-  },
   components: {
     ArticlesGrid
   },
-  created() {
-    axios
+  asyncData(context) {
+    return context.$axios
       .get(
-        `${process.env.baseUrl}/articles?title_contains=${this.$route.params.slug}`
+        `${process.env.baseUrl}/articles?title_contains=${context.params.slug}`
       )
       .then(res => {
-        this.results = res.data;
-        this.findWhat = this.$route.params.slug;
+        return { results: res.data, findWhat: context.params.slug };
       })
       .catch(err => {
         console.log(err);

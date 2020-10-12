@@ -1,58 +1,63 @@
 <template>
   <div>
-    <v-row>
-      <v-col md="8" cols="12">
-        <div v-if="article.image">
-          <img :src="article.image.url" alt="" width="100%" />
-        </div>
+    <client-only>
+      <v-row>
+        <v-col md="8" cols="12">
+          <div v-if="article.image">
+            <img :src="article.image.url" alt="" width="100%" />
+          </div>
 
-        <h1 class="mt-5">{{ article.title }}</h1>
+          <h1 class="mt-5">{{ article.title }}</h1>
 
-        <h5 class="text-uppercase mt-5 mb-1" v-if="article.published">
-          admin
-          {{
-            moment(article.published)
-              .locale("ID")
-              .format("DD MMM YYYY")
-          }}
-        </h5>
+          <h5 class="text-uppercase mt-5 mb-1" v-if="article.published">
+            admin
+            {{
+              moment(article.published)
+                .locale("ID")
+                .format("DD MMM YYYY")
+            }}
+          </h5>
 
-        <v-row no-gutters v-if="article.categories" class="mt-2">
-          <v-col
-            md="auto"
-            cols="auto"
-            v-for="(category, i) in article.categories"
-            :key="category.id"
-          >
-            <router-link
-              :to="{ name: 'categories-slug', params: { slug: category.slug } }"
+          <v-row no-gutters v-if="article.categories" class="mt-2">
+            <v-col
+              md="auto"
+              cols="auto"
+              v-for="(category, i) in article.categories"
+              :key="category.id"
             >
-              <v-btn
-                dark
-                small
-                depressed
-                :class="i == article.categories.length - 1 ? null : 'mr-2'"
+              <router-link
+                :to="{
+                  name: 'categories-slug',
+                  params: { slug: category.slug }
+                }"
               >
-                {{ category.name }}
-              </v-btn>
-            </router-link>
-          </v-col>
-        </v-row>
+                <v-btn
+                  dark
+                  small
+                  depressed
+                  :class="i == article.categories.length - 1 ? null : 'mr-2'"
+                >
+                  {{ category.name }}
+                </v-btn>
+              </router-link>
+            </v-col>
+          </v-row>
 
-        <p
-          class="mt-5"
-          v-if="article.content"
-          v-html="$md.render(article.content)"
-        ></p>
-      </v-col>
+          <p
+            class="mt-5"
+            v-if="article.content"
+            v-html="$md.render(article.content)"
+          ></p>
+        </v-col>
 
-      <v-col md="4" cols="12">
-        <h2 class="text-uppercase mb-3">populer</h2>
-        <v-row no-gutters v-for="art in articles" :key="art.id">
-          <Articles :article="art"></Articles>
-        </v-row>
-      </v-col>
-    </v-row>
+        <v-col md="4" cols="12">
+          <h2 class="text-uppercase mb-3">populer</h2>
+          <v-row no-gutters v-for="art in articles" :key="art.id">
+            <Articles :article="art"></Articles>
+          </v-row>
+        </v-col>
+      </v-row>
+    </client-only>
   </div>
 </template>
 
@@ -67,10 +72,28 @@ export default {
   },
   data() {
     return {
-      article: {},
       articles: [],
-      moment: moment
+      moment: moment,
+      error: null
     };
+  },
+  asyncData(context) {
+    return context.$axios
+      .get(`${process.env.baseUrl}/articles?slug=${context.params.slug}`)
+      .then(res => {
+        return { article: res.data[0] };
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  async mounted() {
+    try {
+      const res = await axios.get(`${process.env.baseUrl}/articles`);
+      this.articles = res.data;
+    } catch (error) {
+      this.error = error;
+    }
   },
   head() {
     let article = this.article;
@@ -101,31 +124,30 @@ export default {
         {
           hid: "og:image",
           property: "og:image",
-          content:
-            "https://ekspose-sulsel.herokuapp.com/ekspose-sulsel-logo.jpg"
+          content: article.image.url
         }
       ]
     };
-  },
-  created() {
-    let one = `${process.env.baseUrl}/articles?slug=${this.$route.params.slug}`;
-    let two = `${process.env.baseUrl}/articles`;
-
-    const requestOne = axios.get(one);
-    const requestTwo = axios.get(two);
-
-    axios
-      .all([requestOne, requestTwo])
-      .then(
-        axios.spread((...res) => {
-          this.article = res[0].data[0];
-          this.articles = res[1].data;
-        })
-      )
-      .catch(err => {
-        console.log(err);
-      });
   }
+  // created() {
+  //   let one = `${process.env.baseUrl}/articles?slug=${this.$route.params.slug}`;
+  //   let two = `${process.env.baseUrl}/articles`;
+
+  //   const requestOne = axios.get(one);
+  //   const requestTwo = axios.get(two);
+
+  //   axios
+  //     .all([requestOne, requestTwo])
+  //     .then(
+  //       axios.spread((...res) => {
+  //         this.article = res[0].data[0];
+  //         this.articles = res[1].data;
+  //       })
+  //     )
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
 };
 </script>
 

@@ -63,22 +63,23 @@ export default {
   data() {
     return {
       articles: [],
-      moment: moment
+      moment: moment,
+      error: null
     };
   },
   components: {
     Articles,
     ArticlesGrid
   },
-  created() {
-    axios
-      .get(`${process.env.baseUrl}/articles?_sort=id:DESC`)
-      .then(res => {
-        this.articles = res.data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  async mounted() {
+    try {
+      const res = await axios.get(
+        `${process.env.baseUrl}/articles?_sort=id:DESC`
+      );
+      this.articles = res.data;
+    } catch (error) {
+      this.error = error;
+    }
   }
 };
 </script>

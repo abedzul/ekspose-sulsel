@@ -42,7 +42,7 @@ export default {
       {
         hid: "og:image",
         property: "og:image",
-        content: "https://ekspose-sulsel.herokuapp.com/ekspose-sulsel-logo.jpg"
+        content: "https://ekspose-sulsel.herokuapp.com/logo.jpg"
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
