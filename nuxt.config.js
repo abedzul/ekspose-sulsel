@@ -78,9 +78,7 @@ export default {
   sitemap: {
     routes: async () => {
       let url =
-        process.env.BASE_URL ||
-        process.env.BASE_URL ||
-        process.env.NODE_ENV !== "production"
+        process.env.BASE_URL || process.env.NODE_ENV !== "production"
           ? "http://localhost:1337"
           : "https://strapi-ekspose-sulsel.herokuapp.com";
       let { data } = await axios.get(`${url}/articles`);
