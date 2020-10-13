@@ -76,13 +76,10 @@ export default {
   },
 
   sitemap: {
-    hostname: "https://ekspose-sulsel.herokuapp.com",
-    gzip: true,
     routes: async () => {
-      const { data } = await axios.get(
-        "https://strapi-ekspose-sulsel.herokuapp.com/articles"
-      );
-      return data.map(article => `/articles/${article.slug}`);
+      let url = process.env.BASE_URL || "http://localhost:1337";
+      let { data } = await axios.get(`${url}/articles`);
+      return data.map(art => `/${art.slug}`);
     }
   }
 };
