@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default {
   env: {
     baseUrl:
@@ -61,7 +63,7 @@ export default {
   buildModules: ["@nuxtjs/vuetify"],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ["@nuxtjs/markdownit", "@nuxtjs/axios"],
+  modules: ["@nuxtjs/markdownit", "@nuxtjs/axios", "@nuxtjs/sitemap"],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
@@ -71,5 +73,16 @@ export default {
     linkify: true,
     breaks: true,
     injected: true
+  },
+
+  sitemap: {
+    hostname: "https://ekspose-sulsel.herokuapp.com",
+    gzip: true,
+    routes: async () => {
+      const { data } = await axios.get(
+        "https://strapi-ekspose-sulsel.herokuapp.com/articles"
+      );
+      return data.map(article => `/articles/${article.slug}`);
+    }
   }
 };
