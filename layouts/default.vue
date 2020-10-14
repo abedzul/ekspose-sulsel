@@ -1,36 +1,63 @@
 <template>
   <v-app>
+    <v-navigation-drawer app v-if="drawer" v-model="drawer">
+      <v-container>
+        <v-row no-gutters>
+          <v-col cols="12" v-for="category in categories" :key="category.id">
+            <v-btn text>
+              <router-link
+                :to="{
+                  name: 'categories-slug',
+                  params: { slug: category.slug }
+                }"
+              >
+                {{ category.name }}
+              </router-link>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-navigation-drawer>
+
     <v-app-bar app>
-      <router-link to="/">
-        <h3>
-          EKSPOSE SULSEL
-        </h3>
-      </router-link>
+      <v-row no-gutters align="center">
+        <div v-if="$vuetify.breakpoint.mobile">
+          <v-icon @click.stop="drawer = !drawer" class="mr-3">
+            mdi-menu
+          </v-icon>
+        </div>
 
-      <v-spacer></v-spacer>
-
-      <v-btn text v-for="category in categories" :key="category.id">
-        <router-link
-          :to="{
-            name: 'categories-slug',
-            params: { slug: category.slug }
-          }"
-        >
-          {{ category.name }}
+        <router-link to="/">
+          <h3>
+            EKSPOSE SULSEL
+          </h3>
         </router-link>
-      </v-btn>
 
-      <v-btn text @click="openSearch">
-        <v-icon>
+        <v-spacer></v-spacer>
+
+        <div v-if="!$vuetify.breakpoint.mobile">
+          <v-btn text v-for="category in categories" :key="category.id">
+            <router-link
+              :to="{
+                name: 'categories-slug',
+                params: { slug: category.slug }
+              }"
+            >
+              {{ category.name }}
+            </router-link>
+          </v-btn>
+        </div>
+
+        <v-icon @click="openSearch" class="ml-5">
           mdi-magnify
         </v-icon>
-      </v-btn>
+      </v-row>
 
       <v-dialog v-model="searchDialog" max-width="1000px">
         <v-card>
           <v-container>
-            <v-row align="center">
-              <v-col md="10" cols="10">
+            <v-row no-gutters align="center">
+              <v-col class="flex-grow-1 pr-3">
                 <v-text-field
                   autofocus
                   @keyup.enter="searchArticle"
@@ -38,10 +65,11 @@
                   hide-details
                   v-model="searchWhat"
                   filled
+                  dense
                 >
                 </v-text-field>
               </v-col>
-              <v-col md="2" cols="2">
+              <v-col md="2" cols="3">
                 <v-btn dark block @click="searchArticle">cari</v-btn>
               </v-col>
             </v-row>
@@ -78,7 +106,8 @@ export default {
     return {
       categories: [],
       searchDialog: false,
-      searchWhat: ""
+      searchWhat: "",
+      drawer: false
     };
   },
   created() {

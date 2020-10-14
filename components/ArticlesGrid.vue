@@ -3,8 +3,14 @@
     <router-link
       :to="{ name: 'articles-slug', params: { slug: article.slug } }"
     >
-      <img :src="article.image.formats.small.url" alt="news" width="100%" />
-      <h5 class="mb-1">{{ article.title }}</h5>
+      <v-img
+        :src="article.image.formats.small.url"
+        :lazy-src="article.image.formats.small.url"
+        alt="news"
+        width="100%"
+        height="170px"
+      ></v-img>
+      <h5 class="mt-2 mb-1">{{ article.title }}</h5>
     </router-link>
 
     <v-row no-gutters align="center" class="mb-1">

@@ -7,11 +7,13 @@
           params: { slug: article.slug }
         }"
       >
-        <img
+        <v-img
           :src="article.image.formats.thumbnail.url"
+          :lazy-src="article.image.formats.thumbnail.url"
           alt="news"
           width="90%"
-        />
+          height="85px"
+        ></v-img>
       </router-link>
     </v-col>
     <v-col md="8" cols="8">

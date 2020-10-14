@@ -6,6 +6,7 @@
           <div v-if="article.image">
             <v-img
               :src="article.image.url"
+              :lazy-src="article.image.url"
               alt="news"
               max-height="640px"
             ></v-img>
