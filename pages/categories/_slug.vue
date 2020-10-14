@@ -17,12 +17,11 @@
 </template>
 
 <script>
-import ArticlesGrid from "~/components/ArticlesGrid";
 import axios from "axios";
 
 export default {
   components: {
-    ArticlesGrid
+    ArticlesGrid: () => import("@/components/ArticlesGrid")
   },
   asyncData(context) {
     return context.$axios

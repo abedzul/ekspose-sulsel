@@ -67,13 +67,12 @@
 </template>
 
 <script>
-import Articles from "~/components/Articles";
 import axios from "axios";
 import moment from "moment";
 
 export default {
   components: {
-    Articles
+    Articles: () => import("@/components/Articles")
   },
   data() {
     return {

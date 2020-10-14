@@ -60,8 +60,6 @@
 </template>
 
 <script>
-import Articles from "~/components/Articles";
-import ArticlesGrid from "~/components/ArticlesGrid";
 import axios from "axios";
 import moment from "moment";
 
@@ -74,8 +72,8 @@ export default {
     };
   },
   components: {
-    Articles,
-    ArticlesGrid
+    Articles: () => import("@/components/Articles"),
+    ArticlesGrid: () => import("@/components/ArticlesGrid")
   },
   async mounted() {
     try {
