@@ -54,7 +54,7 @@ export default {
   css: ["@/assets/css/main.css"],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: [{ src: "~plugins/ga.js", mode: "client" }],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -63,12 +63,7 @@ export default {
   buildModules: ["@nuxtjs/vuetify"],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    "@nuxtjs/markdownit",
-    "@nuxtjs/axios",
-    "nuxt-facebook-pixel-module",
-    "@nuxtjs/sitemap"
-  ],
+  modules: ["@nuxtjs/markdownit", "@nuxtjs/axios", "@nuxtjs/sitemap"],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
@@ -89,12 +84,5 @@ export default {
       let { data } = await axios.get(`${url}/articles`);
       return data.map(art => `/${art.slug}`);
     }
-  },
-
-  facebook: {
-    /* module options */
-    track: "PageView",
-    pixelId: "3438238379576834",
-    disabled: false
   }
 };
