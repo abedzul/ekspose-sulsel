@@ -60,6 +60,7 @@
       <h5>
         2020
         <a
+          @click="trackContact"
           href="http://github.com/kalamangna"
           target="_blank"
           rel="noopener noreferrer"
@@ -102,6 +103,9 @@ export default {
         name: "search-slug",
         params: { slug: this.searchWhat }
       });
+    },
+    trackContact() {
+      this.$fb.track("Contact");
     }
   }
 };
