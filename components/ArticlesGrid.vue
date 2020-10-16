@@ -8,20 +8,22 @@
         :lazy-src="article.image.formats.small.url"
         alt="news"
         width="100%"
-        height="170px"
+        :height="$vuetify.breakpoint.mobile ? '200px' : '180px'"
       ></v-img>
-      <h5 class="mt-2 mb-1">{{ article.title }}</h5>
+      <div class="body-2 font-weight-bold mt-1">
+        {{ article.title }}
+      </div>
     </router-link>
 
-    <v-row no-gutters align="center" class="mb-1">
+    <v-row no-gutters align="center" class="my-1">
       <v-icon x-small>mdi-clock-outline</v-icon>
-      <h6 class="text-uppercase ml-1">
+      <div class="caption text-uppercase ml-1">
         {{
           moment(article.published)
             .locale("ID")
             .format("DD MMM YYYY")
         }}
-      </h6>
+      </div>
     </v-row>
 
     <v-row no-gutters v-if="article.categories">

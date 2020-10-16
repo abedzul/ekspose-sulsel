@@ -1,13 +1,24 @@
 <template>
   <div>
     <client-only>
-      <h2 class="text-uppercase">hasil pencarian: {{ findWhat }}</h2>
-      <v-row v-if="results.length">
+      <div class="title font-weight-medium text-uppercase">
+        Hasil Pencarian: {{ findWhat }}
+      </div>
+
+      <v-divider
+        :class="$vuetify.breakpoint.mobile ? 'mt-1 mb-3' : 'mt-1'"
+      ></v-divider>
+
+      <v-row
+        :no-gutters="$vuetify.breakpoint.mobile ? true : false"
+        v-if="results.length"
+      >
         <v-col md="3" cols="12" v-for="res in results" :key="res.id">
           <ArticlesGrid :article="res"></ArticlesGrid>
+          <v-divider v-if="$vuetify.breakpoint.mobile" class="my-3"></v-divider>
         </v-col>
       </v-row>
-      <v-row v-else>
+      <v-row :no-gutters="$vuetify.breakpoint.mobile ? true : false" v-else>
         <v-col md="12" cols="12">
           no data
         </v-col>

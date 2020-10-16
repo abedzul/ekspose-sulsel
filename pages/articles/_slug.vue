@@ -12,18 +12,23 @@
             ></v-img>
           </div>
 
-          <h1 class="mt-5">{{ article.title }}</h1>
+          <div class="display-1 font-weight-bold mt-5">
+            {{ article.title }}
+          </div>
 
-          <h5 class="text-uppercase mt-5 mb-1" v-if="article.published">
-            admin
-            {{
-              moment(article.published)
-                .locale("ID")
-                .format("DD MMM YYYY")
-            }}
-          </h5>
+          <v-row no-gutters align="center" class="caption text-uppercase mt-5">
+            <span>admin</span>
+            <v-icon class="mx-1" x-small>mdi-clock-outline</v-icon>
+            <span>
+              {{
+                moment(article.published)
+                  .locale("ID")
+                  .format("DD MMM YYYY")
+              }}
+            </span>
+          </v-row>
 
-          <v-row no-gutters v-if="article.categories" class="mt-2">
+          <v-row no-gutters v-if="article.categories" class="mt-1">
             <v-col
               md="auto"
               cols="auto"
@@ -48,18 +53,27 @@
             </v-col>
           </v-row>
 
-          <p
+          <div
             class="mt-5"
             v-if="article.content"
             v-html="$md.render(article.content)"
-          ></p>
+          ></div>
         </v-col>
 
         <v-col md="4" cols="12">
-          <h2 class="text-uppercase mb-3">populer</h2>
-          <div v-for="art in articles" :key="art.id">
-            <Articles :article="art"></Articles>
-          </div>
+          <v-card class="px-3 py-1">
+            <div class="title font-weight-medium text-uppercase mb-1">
+              Populer
+            </div>
+            <div
+              v-for="(art, i) in articles.slice(0, 5)"
+              :key="art.id"
+              class="mb-2"
+            >
+              <v-divider :class="i > 0 ? 'my-3' : 'mb-3'"></v-divider>
+              <Articles :article="art"></Articles>
+            </div>
+          </v-card>
         </v-col>
       </v-row>
     </client-only>

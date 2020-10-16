@@ -4,16 +4,16 @@
       <v-container>
         <v-row no-gutters>
           <v-col cols="12" v-for="category in categories" :key="category.id">
-            <v-btn text large>
-              <router-link
-                :to="{
-                  name: 'categories-slug',
-                  params: { slug: category.slug }
-                }"
-              >
+            <router-link
+              :to="{
+                name: 'categories-slug',
+                params: { slug: category.slug }
+              }"
+            >
+              <v-btn text large>
                 {{ category.name }}
-              </router-link>
-            </v-btn>
+              </v-btn>
+            </router-link>
           </v-col>
         </v-row>
       </v-container>
@@ -28,24 +28,26 @@
         </div>
 
         <router-link to="/">
-          <h3>
+          <div class="font-weight-bold title">
             EKSPOSE SULSEL
-          </h3>
+          </div>
         </router-link>
 
         <v-spacer></v-spacer>
 
         <div v-if="!$vuetify.breakpoint.mobile">
-          <v-btn text v-for="category in categories" :key="category.id">
-            <router-link
-              :to="{
-                name: 'categories-slug',
-                params: { slug: category.slug }
-              }"
-            >
+          <router-link
+            v-for="category in categories"
+            :key="category.id"
+            :to="{
+              name: 'categories-slug',
+              params: { slug: category.slug }
+            }"
+          >
+            <v-btn text>
               {{ category.name }}
-            </router-link>
-          </v-btn>
+            </v-btn>
+          </router-link>
         </div>
 
         <v-icon @click="openSearch" class="ml-5">
@@ -84,16 +86,19 @@
       </v-container>
     </v-main>
 
-    <v-footer app>
-      <h5>
-        2020
+    <v-footer class="body-2 font-weight-medium" padless>
+      <v-col cols="12">
+        &copy; {{ new Date().getFullYear() }} —
         <a
           href="http://github.com/kalamangna"
           target="_blank"
           rel="noopener noreferrer"
-          >github.com/kalamangna</a
         >
-      </h5>
+          <strong>
+            github.com/kalamangna
+          </strong>
+        </a>
+      </v-col>
     </v-footer>
   </v-app>
 </template>

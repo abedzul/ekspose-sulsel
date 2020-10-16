@@ -23,37 +23,54 @@
                   params: { slug: img.slug }
                 }"
               >
-                <h1 class="slide-title">{{ img.title }}</h1>
+                <div class="headline font-weight-bold">
+                  {{ img.title }}
+                </div>
               </router-link>
-              <h5 class="text-uppercase mt-2 slide-date" v-if="img.published">
+              <div class="caption text-uppercase mt-2">
                 admin
                 {{
                   moment(img.published)
                     .locale("ID")
                     .format("DD MMM YYYY")
                 }}
-              </h5>
+              </div>
             </div>
           </v-carousel-item>
         </v-carousel>
 
-        <h2 class="text-uppercase mt-5">terbaru</h2>
-        <v-row>
-          <v-col
-            md="4"
-            cols="12"
-            v-for="art in articles.slice(0, 6)"
-            :key="art.id"
-          >
+        <div class="title font-weight-medium text-uppercase mt-4">
+          Terbaru
+        </div>
+
+        <v-divider
+          :class="$vuetify.breakpoint.mobile ? 'mt-1 mb-3' : 'mt-1'"
+        ></v-divider>
+
+        <v-row :no-gutters="$vuetify.breakpoint.mobile ? true : false">
+          <v-col md="4" cols="12" v-for="art in articles" :key="art.id">
             <ArticlesGrid :article="art"></ArticlesGrid>
+            <v-divider
+              v-if="$vuetify.breakpoint.mobile"
+              class="my-3"
+            ></v-divider>
           </v-col>
         </v-row>
       </v-col>
       <v-col md="4" cols="12">
-        <h2 class="text-uppercase mb-3">populer</h2>
-        <div v-for="art in articles" :key="art.id">
-          <Articles :article="art"></Articles>
-        </div>
+        <v-card class="px-3 py-1">
+          <div class="title font-weight-medium text-uppercase mb-1">
+            Populer
+          </div>
+          <div
+            v-for="(art, i) in articles.slice(0, 5)"
+            :key="art.id"
+            class="mb-2"
+          >
+            <v-divider :class="i > 0 ? 'my-3' : 'mb-3'"></v-divider>
+            <Articles :article="art"></Articles>
+          </div>
+        </v-card>
       </v-col>
     </v-row>
   </div>
@@ -100,13 +117,7 @@ export default {
 
 @media (min-width: 320px) and (max-width: 480px) {
   .headline-container {
-    padding: 60px 30px;
-  }
-  .slide-title {
-    font-size: 20px;
-  }
-  .slide-date {
-    font-size: 12px;
+    padding: 50px 20px;
   }
 }
 </style>

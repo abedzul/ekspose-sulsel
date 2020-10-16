@@ -1,13 +1,24 @@
 <template>
   <div>
     <client-only>
-      <h2 class="text-uppercase">kategori: {{ category.name }}</h2>
-      <v-row v-if="category.articles.length">
+      <div class="title font-weight-medium text-uppercase">
+        Kategori: {{ category.name }}
+      </div>
+
+      <v-divider
+        :class="$vuetify.breakpoint.mobile ? 'mt-1 mb-3' : 'mt-1'"
+      ></v-divider>
+
+      <v-row
+        :no-gutters="$vuetify.breakpoint.mobile ? true : false"
+        v-if="category.articles.length"
+      >
         <v-col md="3" cols="12" v-for="art in category.articles" :key="art.id">
           <ArticlesGrid :article="art"></ArticlesGrid>
+          <v-divider v-if="$vuetify.breakpoint.mobile" class="my-3"></v-divider>
         </v-col>
       </v-row>
-      <v-row v-else>
+      <v-row :no-gutters="$vuetify.breakpoint.mobile ? true : false" v-else>
         <v-col md="12" cols="12">
           no data
         </v-col>

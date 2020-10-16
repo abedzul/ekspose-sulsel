@@ -1,6 +1,6 @@
 <template>
-  <v-row no-gutters class="mb-3">
-    <v-col md="4" cols="4" v-if="article.image">
+  <v-row no-gutters>
+    <v-col cols="4" v-if="article.image">
       <router-link
         :to="{
           name: 'articles-slug',
@@ -12,32 +12,34 @@
           :lazy-src="article.image.formats.thumbnail.url"
           alt="news"
           width="90%"
-          height="85px"
+          height="80px"
         ></v-img>
       </router-link>
     </v-col>
-    <v-col md="8" cols="8">
+    <v-col cols="8">
       <router-link
         :to="{
           name: 'articles-slug',
           params: { slug: article.slug }
         }"
       >
-        <h5 class="mb-1">{{ article.title }}</h5>
+        <div class="body-2 font-weight-bold">
+          {{ article.title }}
+        </div>
       </router-link>
 
-      <v-row no-gutters align="center" class="mb-1">
+      <v-row no-gutters align="center" class="mt-1">
         <v-icon x-small>mdi-clock-outline</v-icon>
-        <h6 class="text-uppercase ml-1">
+        <div class="caption text-uppercase ml-1">
           {{
             moment(article.published)
               .locale("ID")
               .format("DD MMM YYYY")
           }}
-        </h6>
+        </div>
       </v-row>
 
-      <v-row no-gutters v-if="article.categories">
+      <!-- <v-row no-gutters v-if="article.categories">
         <v-col
           md="auto"
           cols="auto"
@@ -57,7 +59,7 @@
             </v-btn>
           </router-link>
         </v-col>
-      </v-row>
+      </v-row> -->
     </v-col>
   </v-row>
 </template>
