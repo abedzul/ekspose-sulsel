@@ -4,7 +4,7 @@
       <v-container>
         <v-row no-gutters>
           <v-col cols="12" v-for="category in categories" :key="category.id">
-            <v-btn text>
+            <v-btn text large>
               <router-link
                 :to="{
                   name: 'categories-slug',
