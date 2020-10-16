@@ -78,12 +78,17 @@ export default {
         rel: "stylesheet",
         href:
           "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      },
+      {
+        rel: "stylesheet",
+        href:
+          "https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"
       }
     ]
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ["@/assets/css/main.css", "@mdi/font/css/materialdesignicons.min.css"],
+  css: ["@/assets/css/main.css"],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [{ src: "~plugins/ga.js", mode: "client" }],
