@@ -129,29 +129,35 @@ export default {
           hid: "og:image",
           property: "og:image",
           content: article.image.url
+        },
+        {
+          hid: "twitter:card",
+          property: "twitter:card",
+          content: article.image.url
+        },
+        {
+          hid: "twitter:url",
+          property: "twitter:url",
+          content: `https://ekspose-sulsel.herokuapp.com/articles/${article.slug}`
+        },
+        {
+          hid: "twitter:title",
+          property: "twitter:title",
+          content: `${article.title} | Ekspose Sulsel`
+        },
+        {
+          hid: "twitter:description",
+          property: "twitter:description",
+          content: article.content
+        },
+        {
+          hid: "twitter:image",
+          property: "twitter:image",
+          content: article.image.url
         }
       ]
     };
   }
-  // created() {
-  //   let one = `${process.env.baseUrl}/articles?slug=${this.$route.params.slug}`;
-  //   let two = `${process.env.baseUrl}/articles`;
-
-  //   const requestOne = axios.get(one);
-  //   const requestTwo = axios.get(two);
-
-  //   axios
-  //     .all([requestOne, requestTwo])
-  //     .then(
-  //       axios.spread((...res) => {
-  //         this.article = res[0].data[0];
-  //         this.articles = res[1].data;
-  //       })
-  //     )
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
 };
 </script>
 

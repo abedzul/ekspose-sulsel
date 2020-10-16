@@ -29,7 +29,7 @@ export default {
       {
         hid: "og:url",
         property: "og:url",
-        content: "https://ekspose-sulsel.herokuapp.com/"
+        content: "https://ekspose-sulsel.herokuapp.com"
       },
       {
         hid: "og:title",
@@ -44,6 +44,31 @@ export default {
       {
         hid: "og:image",
         property: "og:image",
+        content: "https://ekspose-sulsel.herokuapp.com/logo.jpg"
+      },
+      {
+        hid: "twitter:card",
+        property: "twitter:card",
+        content: "https://ekspose-sulsel.herokuapp.com/logo.jpg"
+      },
+      {
+        hid: "twitter:url",
+        property: "twitter:url",
+        content: "https://ekspose-sulsel.herokuapp.com"
+      },
+      {
+        hid: "twitter:title",
+        property: "twitter:title",
+        content: "Ekspose Sulsel - Portal Berita Sulawesi Selatan"
+      },
+      {
+        hid: "twitter:description",
+        property: "twitter:description",
+        content: "Portal Berita Sulawesi Selatan"
+      },
+      {
+        hid: "twitter:image",
+        property: "twitter:image",
         content: "https://ekspose-sulsel.herokuapp.com/logo.jpg"
       }
     ],
