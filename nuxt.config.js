@@ -91,7 +91,9 @@ export default {
   modules: ["@nuxtjs/markdownit", "@nuxtjs/axios", "@nuxtjs/sitemap"],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    extractCSS: true
+  },
 
   markdownit: {
     preset: "default",
