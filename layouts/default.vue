@@ -41,7 +41,7 @@
             :key="category.id"
             :to="{
               name: 'categories-slug',
-              params: { slug: category.slug }
+              params: { slug: category.slug, id: category.id }
             }"
           >
             <v-btn text>

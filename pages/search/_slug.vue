@@ -14,7 +14,7 @@
         v-if="results.length"
       >
         <v-col md="3" cols="12" v-for="res in results" :key="res.id">
-          <ArticlesGrid :article="res"></ArticlesGrid>
+          <ArticlesGrid :post="res"></ArticlesGrid>
           <v-divider v-if="$vuetify.breakpoint.mobile" class="my-3"></v-divider>
         </v-col>
       </v-row>
@@ -36,9 +36,7 @@ export default {
   },
   asyncData(context) {
     return context.$axios
-      .get(
-        `${process.env.baseUrl}/articles?title_contains=${context.params.slug}`
-      )
+      .get(`${process.env.baseUrl}/posts?search=${context.params.slug}`)
       .then(res => {
         return { results: res.data, findWhat: context.params.slug };
       })
