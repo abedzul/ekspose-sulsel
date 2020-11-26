@@ -1,17 +1,15 @@
 <template>
   <div>
-    <router-link
-      :to="{ name: 'articles-slug', params: { slug: article.slug } }"
-    >
-      <v-img
+    <router-link :to="{ name: 'posts-slug', params: { slug: post.slug } }">
+      <!-- <v-img
         :src="article.image.formats.small.url"
         :lazy-src="article.image.formats.small.url"
         alt="news"
         width="100%"
         :height="$vuetify.breakpoint.mobile ? '200px' : '180px'"
-      ></v-img>
+      ></v-img> -->
       <div class="body-2 font-weight-bold mt-1">
-        {{ article.title }}
+        {{ post.title.rendered }}
       </div>
     </router-link>
 
@@ -19,14 +17,14 @@
       <v-icon x-small>mdi-clock-outline</v-icon>
       <div class="caption text-uppercase ml-1">
         {{
-          moment(article.published)
+          moment(post.date)
             .locale("ID")
             .format("DD MMM YYYY")
         }}
       </div>
     </v-row>
 
-    <v-row no-gutters v-if="article.categories">
+    <!-- <v-row no-gutters v-if="post.categories">
       <v-col
         md="auto"
         cols="auto"
@@ -46,7 +44,7 @@
           </v-btn>
         </router-link>
       </v-col>
-    </v-row>
+    </v-row> -->
   </div>
 </template>
 
@@ -60,7 +58,7 @@ export default {
     };
   },
   props: {
-    article: Object
+    post: Object
   }
 };
 </script>

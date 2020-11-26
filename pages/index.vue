@@ -2,14 +2,14 @@
   <div>
     <v-row>
       <v-col md="8" cols="12">
-        <v-carousel
+        <!-- <v-carousel
           cycle
           hide-delimiter-background
           :show-arrows="false"
           :height="$vuetify.breakpoint.mobile ? '250px' : '500px'"
         >
           <v-carousel-item
-            v-for="img in articles.slice(0, 5)"
+            v-for="img in posts.slice(0, 5)"
             :key="img.id"
             :src="img.image.url"
             :lazy-src="img.image.url"
@@ -24,20 +24,20 @@
                 }"
               >
                 <div class="headline font-weight-bold">
-                  {{ img.title }}
+                  {{ img.title.rendered }}
                 </div>
               </router-link>
               <div class="caption text-uppercase mt-2">
                 admin
                 {{
-                  moment(img.published)
+                  moment(img.date)
                     .locale("ID")
                     .format("DD MMM YYYY")
                 }}
               </div>
             </div>
           </v-carousel-item>
-        </v-carousel>
+        </v-carousel> -->
 
         <div class="title font-weight-medium text-uppercase mt-4">
           Terbaru
@@ -48,8 +48,8 @@
         ></v-divider>
 
         <v-row :no-gutters="$vuetify.breakpoint.mobile ? true : false">
-          <v-col md="4" cols="12" v-for="art in articles" :key="art.id">
-            <ArticlesGrid :article="art"></ArticlesGrid>
+          <v-col md="4" cols="12" v-for="post in posts" :key="post.id">
+            <ArticlesGrid :post="post"></ArticlesGrid>
             <v-divider
               v-if="$vuetify.breakpoint.mobile"
               class="my-3"
@@ -63,12 +63,12 @@
             Populer
           </div>
           <div
-            v-for="(art, i) in articles.slice(0, 5)"
-            :key="art.id"
+            v-for="(post, i) in posts.slice(0, 5)"
+            :key="post.id"
             class="mb-2"
           >
             <v-divider :class="i > 0 ? 'my-3' : 'mb-3'"></v-divider>
-            <Articles :article="art"></Articles>
+            <Articles :post="post"></Articles>
           </div>
         </v-card>
       </v-col>
@@ -83,7 +83,7 @@ import moment from "moment";
 export default {
   data() {
     return {
-      articles: [],
+      posts: [],
       moment: moment,
       error: null
     };
@@ -94,10 +94,8 @@ export default {
   },
   async mounted() {
     try {
-      const res = await axios.get(
-        `${process.env.baseUrl}/articles?_sort=id:DESC`
-      );
-      this.articles = res.data;
+      const res = await axios.get(`${process.env.baseUrl}/posts`);
+      this.posts = res.data;
     } catch (error) {
       this.error = error;
     }

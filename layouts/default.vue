@@ -88,7 +88,7 @@
 
     <v-footer class="body-2 font-weight-medium" padless>
       <v-col cols="12">
-        &copy; {{ new Date().getFullYear() }} —
+        &copy; 2020 —
         <a
           href="http://github.com/kalamangna"
           target="_blank"

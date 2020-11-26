@@ -1,6 +1,6 @@
 <template>
   <v-row no-gutters>
-    <v-col cols="4" v-if="article.image">
+    <!-- <v-col cols="4" v-if="article.image">
       <router-link
         :to="{
           name: 'articles-slug',
@@ -15,16 +15,16 @@
           height="80px"
         ></v-img>
       </router-link>
-    </v-col>
+    </v-col> -->
     <v-col cols="8">
       <router-link
         :to="{
-          name: 'articles-slug',
-          params: { slug: article.slug }
+          name: 'posts-slug',
+          params: { slug: post.slug }
         }"
       >
         <div class="body-2 font-weight-bold">
-          {{ article.title }}
+          {{ post.title.rendered }}
         </div>
       </router-link>
 
@@ -32,7 +32,7 @@
         <v-icon x-small>mdi-clock-outline</v-icon>
         <div class="caption text-uppercase ml-1">
           {{
-            moment(article.published)
+            moment(post.date)
               .locale("ID")
               .format("DD MMM YYYY")
           }}
@@ -74,7 +74,7 @@ export default {
     };
   },
   props: {
-    article: Object
+    post: Object
   }
 };
 </script>

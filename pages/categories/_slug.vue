@@ -9,9 +9,8 @@
         :class="$vuetify.breakpoint.mobile ? 'mt-1 mb-3' : 'mt-1'"
       ></v-divider>
 
-      <v-row
+      <!-- <v-row
         :no-gutters="$vuetify.breakpoint.mobile ? true : false"
-        v-if="category.articles.length"
       >
         <v-col md="3" cols="12" v-for="art in category.articles" :key="art.id">
           <ArticlesGrid :article="art"></ArticlesGrid>
@@ -22,7 +21,7 @@
         <v-col md="12" cols="12">
           no data
         </v-col>
-      </v-row>
+      </v-row> -->
     </client-only>
   </div>
 </template>

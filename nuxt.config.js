@@ -3,9 +3,8 @@ import axios from "axios";
 export default {
   env: {
     baseUrl:
-      process.env.BASE_URL || process.env.NODE_ENV !== "production"
-        ? "http://localhost:1337"
-        : "https://strapi-ekspose-sulsel.herokuapp.com"
+      process.env.BASE_URL ||
+      "https://admin-ekspose-sulsel.000webhostapp.com/wp-json/wp/v2"
   },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -45,31 +44,6 @@ export default {
         hid: "og:image",
         property: "og:image",
         content: "https://ekspose-sulsel.herokuapp.com/logo.jpg"
-      },
-      {
-        hid: "twitter:card",
-        property: "twitter:card",
-        content: "https://ekspose-sulsel.herokuapp.com/logo.jpg"
-      },
-      {
-        hid: "twitter:url",
-        property: "twitter:url",
-        content: "https://ekspose-sulsel.herokuapp.com"
-      },
-      {
-        hid: "twitter:title",
-        property: "twitter:title",
-        content: "Ekspose Sulsel - Portal Berita Sulawesi Selatan"
-      },
-      {
-        hid: "twitter:description",
-        property: "twitter:description",
-        content: "Portal Berita Sulawesi Selatan"
-      },
-      {
-        hid: "twitter:image",
-        property: "twitter:image",
-        content: "https://ekspose-sulsel.herokuapp.com/logo.jpg"
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
@@ -105,10 +79,9 @@ export default {
   sitemap: {
     routes: async () => {
       let url =
-        process.env.BASE_URL || process.env.NODE_ENV !== "production"
-          ? "http://localhost:1337"
-          : "https://strapi-ekspose-sulsel.herokuapp.com";
-      let { data } = await axios.get(`${url}/articles`);
+        process.env.BASE_URL ||
+        "https://admin-ekspose-sulsel.000webhostapp.com/wp-json/wp/v2";
+      let { data } = await axios.get(`${url}/posts`);
       return data.map(art => `/${art.slug}`);
     }
   }
