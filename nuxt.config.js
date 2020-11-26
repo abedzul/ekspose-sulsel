@@ -62,18 +62,11 @@ export default {
   buildModules: ["@nuxtjs/vuetify"],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ["@nuxtjs/markdownit", "@nuxtjs/axios", "@nuxtjs/sitemap"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/sitemap"],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     extractCSS: true
-  },
-
-  markdownit: {
-    preset: "default",
-    linkify: true,
-    breaks: true,
-    injected: true
   },
 
   sitemap: {

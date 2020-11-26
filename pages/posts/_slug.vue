@@ -3,14 +3,14 @@
     <client-only>
       <v-row>
         <v-col md="8" cols="12">
-          <!-- <div v-if="article.image">
+          <div v-if="post.better_featured_image.source_url">
             <v-img
-              :src="article.image.url"
-              :lazy-src="article.image.url"
+              :src="post.better_featured_image.source_url"
+              :lazy-src="post.better_featured_image.source_url"
               alt="news"
               max-height="640px"
             ></v-img>
-          </div> -->
+          </div>
 
           <div class="display-1 font-weight-bold mt-5">
             {{ post.title.rendered }}
@@ -53,7 +53,7 @@
             </v-col>
           </v-row> -->
 
-          <div class="mt-5" v-html="$md.render(post.content.rendered)"></div>
+          <div class="mt-5" v-html="post.content.rendered"></div>
         </v-col>
 
         <v-col md="4" cols="12">

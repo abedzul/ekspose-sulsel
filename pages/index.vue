@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col md="8" cols="12">
-        <!-- <v-carousel
+        <v-carousel
           cycle
           hide-delimiter-background
           :show-arrows="false"
@@ -11,15 +11,15 @@
           <v-carousel-item
             v-for="img in posts.slice(0, 5)"
             :key="img.id"
-            :src="img.image.url"
-            :lazy-src="img.image.url"
+            :src="img.better_featured_image.source_url"
+            :lazy-src="img.better_featured_image.source_url"
           >
             <div
               class="d-flex flex-column justify-end fill-height headline-container"
             >
               <router-link
                 :to="{
-                  name: 'articles-slug',
+                  name: 'posts-slug',
                   params: { slug: img.slug }
                 }"
               >
@@ -37,7 +37,7 @@
               </div>
             </div>
           </v-carousel-item>
-        </v-carousel> -->
+        </v-carousel>
 
         <div class="title font-weight-medium text-uppercase mt-4">
           Terbaru

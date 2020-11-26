@@ -1,21 +1,21 @@
 <template>
   <v-row no-gutters>
-    <!-- <v-col cols="4" v-if="article.image">
+    <v-col cols="4" v-if="post.better_featured_image.source_url">
       <router-link
         :to="{
-          name: 'articles-slug',
-          params: { slug: article.slug }
+          name: 'posts-slug',
+          params: { slug: post.slug }
         }"
       >
         <v-img
-          :src="article.image.formats.thumbnail.url"
-          :lazy-src="article.image.formats.thumbnail.url"
+          :src="post.better_featured_image.source_url"
+          :lazy-src="post.better_featured_image.source_url"
           alt="news"
           width="90%"
           height="80px"
         ></v-img>
       </router-link>
-    </v-col> -->
+    </v-col>
     <v-col cols="8">
       <router-link
         :to="{

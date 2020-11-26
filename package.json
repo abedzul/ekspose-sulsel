@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
-    "@nuxtjs/markdownit": "^1.2.10",
     "@nuxtjs/sitemap": "^2.4.0",
     "core-js": "^3.6.5",
     "moment": "^2.29.0",
