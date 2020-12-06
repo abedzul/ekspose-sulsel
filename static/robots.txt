@@ -1,12 +1,4 @@
-# Group 1
 User-agent: *
 Allow: /
-
-# Group 2
-User-agent: *
-Disallow: /categories
-Disallow: /categories/
-Disallow: /search
-Disallow: /search/
 
 Sitemap: https://ekspose-sulsel.herokuapp.com/sitemap.xml

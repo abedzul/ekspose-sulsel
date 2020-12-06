@@ -1,13 +1,13 @@
 <template>
   <div>
     <router-link :to="{ name: 'posts-slug', params: { slug: post.slug } }">
-      <v-img
+      <!-- <v-img
         :src="post.better_featured_image.source_url"
         :lazy-src="post.better_featured_image.source_url"
         alt="news"
         width="100%"
         :height="$vuetify.breakpoint.mobile ? '200px' : '180px'"
-      ></v-img>
+      ></v-img> -->
       <div class="body-2 font-weight-bold mt-1">
         {{ post.title.rendered }}
       </div>

@@ -5,16 +5,16 @@
         Kategori: {{ name }}
       </div>
 
-      <v-divider
+      <!-- <v-divider
         :class="$vuetify.breakpoint.mobile ? 'mt-1 mb-3' : 'mt-1'"
-      ></v-divider>
+      ></v-divider> -->
 
-      <v-row :no-gutters="$vuetify.breakpoint.mobile ? true : false">
+      <!-- <v-row :no-gutters="$vuetify.breakpoint.mobile ? true : false">
         <v-col md="3" cols="12" v-for="post in posts" :key="post.id">
           <ArticlesGrid :post="post"></ArticlesGrid>
           <v-divider v-if="$vuetify.breakpoint.mobile" class="my-3"></v-divider>
         </v-col>
-      </v-row>
+      </v-row> -->
     </client-only>
   </div>
 </template>

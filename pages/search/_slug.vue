@@ -5,11 +5,11 @@
         Hasil Pencarian: {{ findWhat }}
       </div>
 
-      <v-divider
+      <!-- <v-divider
         :class="$vuetify.breakpoint.mobile ? 'mt-1 mb-3' : 'mt-1'"
-      ></v-divider>
+      ></v-divider> -->
 
-      <v-row
+      <!-- <v-row
         :no-gutters="$vuetify.breakpoint.mobile ? true : false"
         v-if="results.length"
       >
@@ -22,7 +22,7 @@
         <v-col md="12" cols="12">
           no data
         </v-col>
-      </v-row>
+      </v-row> -->
     </client-only>
   </div>
 </template>

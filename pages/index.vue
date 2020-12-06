@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col md="8" cols="12">
-        <v-carousel
+        <!-- <v-carousel
           cycle
           hide-delimiter-background
           :show-arrows="false"
@@ -37,17 +37,17 @@
               </div>
             </div>
           </v-carousel-item>
-        </v-carousel>
+        </v-carousel> -->
 
         <div class="title font-weight-medium text-uppercase mt-4">
           Terbaru
         </div>
 
-        <v-divider
+        <!-- <v-divider
           :class="$vuetify.breakpoint.mobile ? 'mt-1 mb-3' : 'mt-1'"
-        ></v-divider>
+        ></v-divider> -->
 
-        <v-row :no-gutters="$vuetify.breakpoint.mobile ? true : false">
+        <!-- <v-row :no-gutters="$vuetify.breakpoint.mobile ? true : false">
           <v-col md="4" cols="12" v-for="post in posts" :key="post.id">
             <ArticlesGrid :post="post"></ArticlesGrid>
             <v-divider
@@ -55,7 +55,7 @@
               class="my-3"
             ></v-divider>
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-col>
       <v-col md="4" cols="12">
         <v-card class="px-3 py-1">
