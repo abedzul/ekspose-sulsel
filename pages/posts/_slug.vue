@@ -1,78 +1,10 @@
 <template>
   <div>
-    <client-only>
-      <v-row>
-        <v-col md="8" cols="12">
-          <div v-if="post.better_featured_image.source_url">
-            <v-img
-              :src="post.better_featured_image.source_url"
-              :lazy-src="post.better_featured_image.source_url"
-              alt="news"
-              max-height="640px"
-            ></v-img>
-          </div>
-
-          <div class="display-1 font-weight-bold mt-5">
-            {{ post.title.rendered }}
-          </div>
-
-          <v-row no-gutters align="center" class="caption text-uppercase mt-5">
-            <span>admin</span>
-            <v-icon class="mx-1" x-small>mdi-clock-outline</v-icon>
-            <span>
-              {{
-                moment(post.date)
-                  .locale("ID")
-                  .format("DD MMM YYYY")
-              }}
-            </span>
-          </v-row>
-
-          <!-- <v-row no-gutters v-if="article.categories" class="mt-1">
-            <v-col
-              md="auto"
-              cols="auto"
-              v-for="(category, i) in article.categories"
-              :key="category.id"
-            >
-              <router-link
-                :to="{
-                  name: 'categories-slug',
-                  params: { slug: category.slug }
-                }"
-              >
-                <v-btn
-                  dark
-                  small
-                  depressed
-                  :class="i == article.categories.length - 1 ? null : 'mr-2'"
-                >
-                  {{ category.name }}
-                </v-btn>
-              </router-link>
-            </v-col>
-          </v-row> -->
-
-          <div class="mt-5" v-html="post.content.rendered"></div>
-        </v-col>
-
-        <v-col md="4" cols="12">
-          <v-card class="px-3 py-1">
-            <div class="title font-weight-medium text-uppercase mb-1">
-              Populer
-            </div>
-            <div
-              v-for="(post, i) in posts.slice(0, 5)"
-              :key="post.id"
-              class="mb-2"
-            >
-              <v-divider :class="i > 0 ? 'my-3' : 'mb-3'"></v-divider>
-              <Articles :post="post"></Articles>
-            </div>
-          </v-card>
-        </v-col>
-      </v-row>
-    </client-only>
+    <img :src="post.better_featured_image.source_url" alt="news" />
+    <h1 class="text-4xl font-bold">
+      {{ post.title.rendered }}
+    </h1>
+    <p v-html="post.content.rendered"></p>
   </div>
 </template>
 
@@ -81,9 +13,6 @@ import axios from "axios";
 import moment from "moment";
 
 export default {
-  components: {
-    Articles: () => import("@/components/Articles")
-  },
   data() {
     return {
       posts: [],
