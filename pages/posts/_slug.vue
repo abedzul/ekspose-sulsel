@@ -1,23 +1,84 @@
 <template>
-  <div>
-    <img :src="post.better_featured_image.source_url" alt="news" />
-    <h1 class="text-4xl font-bold">
-      {{ post.title.rendered }}
-    </h1>
-    <p v-html="post.content.rendered"></p>
-  </div>
+  <client-only>
+    <div class="lg:flex">
+      <!-- post detail -->
+      <section class="py-5 lg:py-10 lg:w-2/3 lg:px-5">
+        <!-- post image -->
+        <img
+          class="w-full"
+          :src="post.better_featured_image.source_url"
+          alt="news"
+        />
+        <h1 class="text-4xl font-bold pt-5">
+          {{ post.title.rendered }}
+        </h1>
+
+        <!-- post date -->
+        <div class="flex items-center mt-5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            class="h-4 w-4 mr-2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <p class="text-xs uppercase">
+            {{
+              moment(post.date)
+                .locale("ID")
+                .format("DD MMM YYYY")
+            }}
+          </p>
+        </div>
+
+        <!-- post categories -->
+        <div class="mt-2">
+          <nuxt-link
+            :to="{
+              name: 'categories-id',
+              params: { id: cat.id }
+            }"
+            v-for="cat in categories"
+            :key="cat.id"
+            class="bg-yellow text-white mr-2 last:mr-0 px-2 py-1 rounded uppercase text-xs hover:bg-blue tracking-wide font-semibold"
+          >
+            {{ cat.name }}
+          </nuxt-link>
+        </div>
+
+        <!-- post content -->
+        <p class="mt-5" v-html="post.content.rendered"></p>
+      </section>
+
+      <hr class="lg:hidden" />
+
+      <!-- posts list -->
+      <section class="py-5 lg:py-10 lg:w-1/3 lg:px-5">
+        <postsList :news="posts" />
+      </section>
+    </div>
+  </client-only>
 </template>
 
 <script>
 import axios from "axios";
 import moment from "moment";
+import postsList from "@/components/postsList.vue";
 
 export default {
+  components: {
+    postsList
+  },
   data() {
     return {
-      posts: [],
-      moment: moment,
-      error: null
+      moment: moment
     };
   },
   asyncData(context) {
@@ -30,12 +91,29 @@ export default {
         console.log(err);
       });
   },
-  async mounted() {
-    try {
-      const res = await axios.get(`${process.env.baseUrl}/posts`);
-      this.posts = res.data;
-    } catch (error) {
-      this.error = error;
+  computed: {
+    posts() {
+      return this.$store.state.posts;
+    },
+    categories() {
+      let categoriesFilter = [];
+      let cats = this.$store.state.categories;
+      cats.forEach(cat => {
+        let id = cat.id;
+        let name = cat.name;
+
+        let postCats = this.post.categories;
+        postCats.forEach(postCat => {
+          if (id == postCat) {
+            let postCatId = {
+              id: id,
+              name: name
+            };
+            categoriesFilter.push(postCatId);
+          }
+        });
+      });
+      return categoriesFilter;
     }
   }
   // head() {

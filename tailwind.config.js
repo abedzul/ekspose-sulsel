@@ -16,7 +16,10 @@ module.exports = {
     }
   },
   variants: {
-    extend: {}
+    extend: {
+      margin: ["responsive", "first", "last"],
+      padding: ["responsive", "first", "last"]
+    }
   },
   plugins: []
 };

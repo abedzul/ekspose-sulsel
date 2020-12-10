@@ -22,17 +22,18 @@
         EKSPOSE SULSEL
       </nuxt-link>
       <div
-        class="hidden lg:flex lg:w-2/3 justify-between uppercase text-sm font-semibold tracking-wide"
+        id="navMobile"
+        class="hidden absolute lg:static lg:flex lg:w-2/3 justify-between uppercase text-sm font-semibold tracking-wide"
       >
         <nuxt-link
           v-for="category in categories"
           :key="category.id"
           :to="{
-            name: 'categories-slug',
-            params: { slug: category.slug, id: category.id }
+            name: 'categories-id',
+            params: { id: category.id }
           }"
           :class="
-            $route.fullPath === `/categories/${category.slug}`
+            $route.fullPath === `/categories/${category.id}`
               ? `text-yellow`
               : `hover:text-yellow`
           "
@@ -68,23 +69,41 @@ import axios from "axios";
 export default {
   data() {
     return {
-      categories: [],
-      // searchDialog: false,
-      // searchWhat: "",
       drawer: false
     };
   },
-  created() {
-    axios
-      .get(`${process.env.baseUrl}/categories`)
-      .then(res => {
-        this.categories = res.data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  computed: {
+    categories() {
+      return this.$store.state.categories;
+    }
+  },
+  async created() {
+    const urls = ["posts", "categories"];
+
+    try {
+      const response = await Promise.all(
+        urls.map(url =>
+          fetch(`${process.env.baseUrl}/${url}`).then(res => res.json())
+        )
+      );
+      this.$store.dispatch("storePosts", response[0]);
+      this.$store.dispatch("storeCategories", response[1]);
+    } catch (error) {
+      console.log(error);
+    }
   },
   methods: {
+    // toggleNav() {
+    //   console.log(this.drawer);
+    //   this.drawer == !this.drawer;
+    //   const nav = document.getElementById("navMobile");
+    //   nav.style.display = "flex";
+    //   nav.style.flexDirection = "column";
+    //   nav.style.padding = "1rem";
+    //   nav.style.backgroundColor = "#102674";
+    //   nav.style.top = 0;
+    //   nav.style.left = 0;
+    // }
     // openSearch() {
     //   this.searchDialog = true;
     //   this.searchWhat = "";
