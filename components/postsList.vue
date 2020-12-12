@@ -52,7 +52,7 @@
           </svg>
           <p class="text-xs uppercase">
             {{
-              moment(news.date)
+              moment(post.date)
                 .locale("ID")
                 .format("DD MMM YYYY")
             }}

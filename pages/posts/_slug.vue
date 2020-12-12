@@ -9,7 +9,9 @@
           :src="post.better_featured_image.source_url"
           alt="news"
         />
-        <h1 class="text-4xl font-bold pt-5">
+
+        <!-- post title -->
+        <h1 class="text-4xl font-bold pt-5 leading-tight">
           {{ post.title.rendered }}
         </h1>
 
@@ -54,7 +56,7 @@
         </div>
 
         <!-- post content -->
-        <p class="mt-5" v-html="post.content.rendered"></p>
+        <p class="mt-5 leading-relaxed" v-html="post.content.rendered"></p>
       </section>
 
       <hr class="lg:hidden" />

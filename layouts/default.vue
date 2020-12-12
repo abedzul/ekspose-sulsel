@@ -2,7 +2,7 @@
   <div>
     <!-- navbar -->
     <nav
-      class="bg-blue text-white shadow text-grey p-4 flex lg:justify-between items-center fixed w-full z-50"
+      class="bg-blue text-white shadow text-grey p-4 flex justify-between items-center w-full z-50"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -18,11 +18,12 @@
           d="M4 6h16M4 12h16M4 18h16"
         />
       </svg>
+
       <nuxt-link to="/" class="font-bold tracking-wide lg:w-1/3">
         EKSPOSE SULSEL
       </nuxt-link>
+
       <div
-        id="navMobile"
         class="hidden absolute lg:static lg:flex lg:w-2/3 justify-between uppercase text-sm font-semibold tracking-wide"
       >
         <nuxt-link
@@ -41,10 +42,58 @@
           {{ category.name }}
         </nuxt-link>
       </div>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="h-6 w-6 lg:ml-8 cursor-pointer"
+        @click="modal = !modal"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+          clip-rule="evenodd"
+        />
+      </svg>
+
+      <div
+        v-if="modal"
+        class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
+      >
+        <div class="relative bg-blue p-4 flex items-center w-80 lg:w-96">
+          <input
+            v-model="search"
+            autofocus
+            @keyup.enter="searchPosts"
+            class="text-black focus:outline-none px-2 py-1 w-full"
+          />
+          <button
+            @click="searchPosts"
+            class="uppercase bg-yellow focus:outline-none ml-2 px-2 py-1"
+          >
+            cari
+          </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="h-6 w-6 cursor-pointer ml-2"
+            @click="modal = false"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+      </div>
+      <div v-if="modal" class="absolute z-40 inset-0 opacity-25 bg-black"></div>
     </nav>
     <!-- end navbar -->
 
-    <main style="padding-top: 56px" class="px-4 lg:px-24">
+    <main class="px-4 lg:px-24">
       <Nuxt />
     </main>
 
@@ -69,7 +118,9 @@ import axios from "axios";
 export default {
   data() {
     return {
-      drawer: false
+      drawer: false,
+      modal: false,
+      search: ""
     };
   },
   computed: {
@@ -79,7 +130,6 @@ export default {
   },
   async created() {
     const urls = ["posts", "categories"];
-
     try {
       const response = await Promise.all(
         urls.map(url =>
@@ -93,28 +143,13 @@ export default {
     }
   },
   methods: {
-    // toggleNav() {
-    //   console.log(this.drawer);
-    //   this.drawer == !this.drawer;
-    //   const nav = document.getElementById("navMobile");
-    //   nav.style.display = "flex";
-    //   nav.style.flexDirection = "column";
-    //   nav.style.padding = "1rem";
-    //   nav.style.backgroundColor = "#102674";
-    //   nav.style.top = 0;
-    //   nav.style.left = 0;
-    // }
-    // openSearch() {
-    //   this.searchDialog = true;
-    //   this.searchWhat = "";
-    // },
-    // searchArticle() {
-    //   this.searchDialog = false;
-    //   this.$router.push({
-    //     name: "search-slug",
-    //     params: { slug: this.searchWhat }
-    //   });
-    // }
+    searchPosts() {
+      this.modal = false;
+      this.$router.push({
+        name: "search-slug",
+        params: { slug: this.search }
+      });
+    }
   }
 };
 </script>
