@@ -75,7 +75,7 @@ export default {
         process.env.BASE_URL ||
         "https://admin-ekspose-sulsel.000webhostapp.com/wp-json/wp/v2";
       let { data } = await axios.get(`${url}/posts`);
-      return data.map(art => `/${art.slug}`);
+      return data.map(post => `/${post.slug}`);
     }
   }
 };

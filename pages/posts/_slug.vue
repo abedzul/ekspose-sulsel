@@ -117,66 +117,41 @@ export default {
       });
       return categoriesFilter;
     }
-  }
-  // head() {
-  //   let article = this.article;
+  },
+  head() {
+    let post = this.post;
 
-  //   return {
-  //     title: `${article.title} | Ekspose Sulsel`,
-  //     meta: [
-  //       {
-  //         hid: "description",
-  //         name: "description",
-  //         content: article.content
-  //       },
-  //       {
-  //         hid: "og:url",
-  //         property: "og:url",
-  //         content: `https://ekspose-sulsel.herokuapp.com/articles/${article.slug}`
-  //       },
-  //       {
-  //         hid: "og:title",
-  //         property: "og:title",
-  //         content: `${article.title} | Ekspose Sulsel`
-  //       },
-  //       {
-  //         hid: "og:description",
-  //         property: "og:description",
-  //         content: article.content
-  //       },
-  //       {
-  //         hid: "og:image",
-  //         property: "og:image",
-  //         content: article.image.url
-  //       },
-  //       {
-  //         hid: "twitter:card",
-  //         property: "twitter:card",
-  //         content: article.image.url
-  //       },
-  //       {
-  //         hid: "twitter:url",
-  //         property: "twitter:url",
-  //         content: `https://ekspose-sulsel.herokuapp.com/articles/${article.slug}`
-  //       },
-  //       {
-  //         hid: "twitter:title",
-  //         property: "twitter:title",
-  //         content: `${article.title} | Ekspose Sulsel`
-  //       },
-  //       {
-  //         hid: "twitter:description",
-  //         property: "twitter:description",
-  //         content: article.content
-  //       },
-  //       {
-  //         hid: "twitter:image",
-  //         property: "twitter:image",
-  //         content: article.image.url
-  //       }
-  //     ]
-  //   };
-  // }
+    return {
+      title: `${post.title.rendered} | Ekspose Sulsel`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: post.title.rendered
+        },
+        {
+          hid: "og:url",
+          property: "og:url",
+          content: `https://ekspose-sulsel.herokuapp.com/posts/${post.slug}`
+        },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: `${post.title.rendered} | Ekspose Sulsel`
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: post.title.rendered
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: post.better_featured_image.source_url
+        }
+      ]
+    };
+  }
 };
 </script>
 
