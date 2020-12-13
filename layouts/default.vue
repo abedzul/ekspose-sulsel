@@ -164,6 +164,7 @@ export default {
         name: "search-slug",
         params: { slug: this.search }
       });
+      this.search = "";
     }
   }
 };
