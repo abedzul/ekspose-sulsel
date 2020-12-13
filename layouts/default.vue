@@ -58,7 +58,12 @@
         viewBox="0 0 20 20"
         fill="currentColor"
         class="h-6 w-6 lg:ml-8 cursor-pointer"
-        @click="modal = !modal"
+        @click="
+          () => {
+            modal = !modal;
+            drawer = false;
+          }
+        "
       >
         <path
           fill-rule="evenodd"
