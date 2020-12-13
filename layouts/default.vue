@@ -9,7 +9,7 @@
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        class="h-6 w-6 mr-4 lg:hidden"
+        class="h-6 w-6 lg:hidden"
       >
         <path
           stroke-linecap="round"
