@@ -123,6 +123,7 @@ export default {
 
     return {
       title: `${post.title.rendered} | Ekspose Sulsel`,
+      titleTemplate: `${post.title.rendered} | Ekspose Sulsel`,
       meta: [
         {
           hid: "description",
@@ -148,6 +149,41 @@ export default {
           hid: "og:image",
           property: "og:image",
           content: post.better_featured_image.source_url
+        },
+        {
+          hid: "twitter:card",
+          name: "twitter:card",
+          content: "summary_large_image"
+        },
+        {
+          hid: "twitter:domain",
+          property: "twitter:domain",
+          content: "ekspose-sulsel.herokuapp.com"
+        },
+        {
+          hid: "twitter:url",
+          property: "twitter:url",
+          content: `https://ekspose-sulsel.herokuapp.com/posts/${post.slug}`
+        },
+        {
+          hid: "twitter:title",
+          name: "twitter:title",
+          content: `${post.title.rendered} | Ekspose Sulsel`
+        },
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content: post.title.rendered
+        },
+        {
+          hid: "twitter:image",
+          name: "twitter:image",
+          content: post.better_featured_image.source_url
+        },
+        {
+          hid: "twitter:creator",
+          name: "twitter:creator",
+          content: "@kalamangna"
         }
       ]
     };
