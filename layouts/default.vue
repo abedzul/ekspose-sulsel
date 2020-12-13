@@ -10,6 +10,7 @@
         viewBox="0 0 24 24"
         stroke="currentColor"
         class="h-6 w-6 lg:hidden"
+        @click="drawer = !drawer"
       >
         <path
           stroke-linecap="round"
@@ -19,12 +20,20 @@
         />
       </svg>
 
-      <nuxt-link to="/" class="font-bold tracking-wide lg:w-1/3">
+      <nuxt-link
+        to="/"
+        class="font-bold tracking-wide lg:w-1/3"
+        @click.native="drawer = false"
+      >
         EKSPOSE SULSEL
       </nuxt-link>
 
       <div
-        class="hidden absolute lg:static lg:flex lg:w-2/3 justify-between uppercase text-sm font-semibold tracking-wide"
+        :class="
+          drawer
+            ? `absolute flex flex-col p-4 uppercase text-sm font-semibold tracking-wide bg-blue items-center inset-0 mt-14 gap-y-2`
+            : `hidden lg:flex lg:w-2/3 justify-between uppercase text-sm font-semibold tracking-wide`
+        "
       >
         <nuxt-link
           v-for="category in categories"
@@ -38,6 +47,7 @@
               ? `text-yellow`
               : `hover:text-yellow`
           "
+          @click.native="drawer = false"
         >
           {{ category.name }}
         </nuxt-link>
