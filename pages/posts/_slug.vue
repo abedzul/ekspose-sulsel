@@ -41,7 +41,7 @@
         </div>
 
         <!-- post categories -->
-        <div class="mt-2">
+        <div class="mt-2" v-if="post.categories.length">
           <nuxt-link
             :to="{
               name: 'categories-id',

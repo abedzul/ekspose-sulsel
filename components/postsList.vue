@@ -14,14 +14,14 @@
           }"
         >
           <img
-            class="h-20"
+            class="w-full"
             :src="post.better_featured_image.source_url"
             alt="news"
           />
         </nuxt-link>
       </div>
 
-      <div class="w-2/3">
+      <div class="w-2/3 pl-4">
         <!-- post title -->
         <nuxt-link
           :to="{
